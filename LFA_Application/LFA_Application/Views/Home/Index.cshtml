@@ -1,0 +1,24 @@
+﻿@model LFA_Application.Models.Form
+@{
+    ViewData["Title"] = "Home Page";
+}
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{ 
+    <div class="d-flex flex-column align-items-center">
+        <h1>Regular expressions</h1>
+    </div>
+    <div class="d-flex flex-column gap-1" style="font-family: sans-serif">
+        @Html.LabelFor(m=>m.Pattern)
+        @Html.EditorFor(model => model.Pattern, new { htmlAttributes = new { placeholder = " Insert your regular expression here " } })
+        <p class="text-danger">@ViewBag.Error </p>
+        @Html.LabelFor(m=>m.Text1)
+        @Html.EditorFor(model => model.Text1, new {htmlAttributes = new {placeholder = " Insert your Text1 here"}} )
+        @Html.LabelFor(m=>m.Text2)
+        <textarea asp-for="Text2" rows="4" cols="50" placeholder="Insert your Text2 here"></textarea>
+        @Html.LabelFor(m=>m.Matched)
+        <input value="@Model.Matched" readonly />
+        @Html.LabelFor(m=>m.Matches)
+        <textarea readonly>@Model.Matches</textarea>
+        <button type="submit" style="background-color: deeppink">Apply</button>
+    </div>
+}
